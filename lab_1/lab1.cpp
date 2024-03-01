@@ -3,9 +3,9 @@
 
 using namespace std;
 
-class ICalc 
+class ICalc //Определение абстрактного базового класса
 {
-protected:
+protected: //Модификатор доступа, делающий поля и методы доступными для классов-наследников, но недоступными извне
     double m_x0, m_step;
     function<double(double)> m_f;
 
@@ -23,12 +23,12 @@ public:
 
     void setStep(double step) { m_step = step; }
 
-    virtual double Calcdiff() { return 0; };
+    virtual double Calcdiff() { return 0; }; //Виртуальный метод класса,должен быть переопределен в производных классах.
 };
-
+//классы, наследующие ICalc, являются конкретными реализациями метода Calcdiff
 class Calcleft : public ICalc
 {
-public:
+public: 
     Calcleft(double x0, function<double(double)>f, double step = 0) : ICalc(x0, f, step) {};
 
     double Calcdiff() override
@@ -82,8 +82,12 @@ int main()
         cout << "Введите шаг, шаг не должен быть равен 0" << endl;
         cin >> step;
     }
-
-    auto calcr = make_unique<Calcright>(Calcright(x0, square, step));
+    
+//создает объект типа Calcright с использованием конструктора инициализаци
+//здесь используется функция make_unique, которая выделяет память для объекта типа Calcright на куче и возвращает указатель 
+//на этот объект, обернутый в умный указатель unique_ptr 
+//auto используется для вывода типа переменной calcr, она принимает возвращаемое значение от make_unique
+    auto calcr = make_unique<Calcright>(Calcright(x0, square, step)); 
     auto calcl = make_unique<Calcleft>(Calcleft(x0, square, step));
     auto calcm = make_unique<Calcmiddle>(Calcmiddle(x0, square, step));
 
@@ -91,7 +95,9 @@ int main()
     cout << "Левая производная: " << calcl->Calcdiff() << endl;
     cout << "Средняя производная: " << calcm->Calcdiff() << endl << endl;
 
-    calcr->setFunc(cube);
+//Эта строка вызывает метод setFunc() для объекта, на который указывает умный указатель calcr, чтобы установить новую функцию
+//Метод setFunc() задает новую функцию для объекта Calcright. функция cube будет использоваться вместо предыдущей
+    calcr->setFunc(cube); //оператор доступа к члену для указателей
     calcl->setFunc(cube);
     calcm->setFunc(cube);
 
