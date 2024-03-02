@@ -1,10 +1,13 @@
 #include "CommandKey.h"
 
+//Этот метод устанавливает вектор клавиш, который передается в качестве аргумента. Внутри метода вектор _keys класса CommandKey присваивается 
+//значению, переданному в параметре keys
 void CommandKey::setKeys(std::vector<Key> keys)
 {
 	_keys = keys;
 }
 
+//Этот метод выводит на экран команды, связанные с клавишами.
 void CommandKey::getKeys()
 {
 	for (auto i : _keys) {
