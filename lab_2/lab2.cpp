@@ -26,8 +26,8 @@ public:
         whole = 0;
     }
 
-    int getNumer() const { return numer; }
-    int getDenom() const { return denom; }
+    int getNumer() const { return numer; } //const после закрывающей скобки означает, что этот метод не изменяет состояние объекта
+    int getDenom() const { return denom; }  //является функцией только для чтения, которая не изменяет объект, для которого он вызывается
 
     void set(int n, int d) {
         if (d == 0)
@@ -65,7 +65,7 @@ public:
             this->set(a, b);
         }
         catch (const invalid_argument& e) {
-            cout << e.what() << endl;
+            cout << e.what() << endl; //объект исключения e, метод what(), 
             return 0;
         }
         return 1;
@@ -94,7 +94,7 @@ public:
         cout << "Выделение целой части ";
         Ratio tmp;
         if (abs(numer) < abs(denom))
-            tmp = *this;
+            tmp = *this; //операция присваивания копированием, где значения всех полей одного объекта копируются в поля другого объекта
         else {
             if (tmp.numer >= 0) {
                 tmp.whole = numer / denom;
@@ -123,7 +123,7 @@ public:
         return tmp;
     }
 
-    Ratio add(const Ratio& r) {
+    Ratio add(const Ratio& r) {  //const означает, что объект r не будет изменяться внутри метода
         cout << "x + y = ";
         Ratio tmp = *this + r;
         return tmp;
