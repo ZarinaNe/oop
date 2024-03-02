@@ -3,7 +3,7 @@
 
 int main() {
 
-
+//демонстрируем использование класса Array3d из пространства имён array_convertor
     array_convertor::Mas3d Arr(
             {
                     {
@@ -17,7 +17,7 @@ int main() {
     Arr.fill();
     Arr.PrintArr();
 
-    Arr.SetValues1(777, 2);
+    Arr.SetValues1(777, 2); //[1][0][2]
     Arr.PrintArr();
 
     return 0;
