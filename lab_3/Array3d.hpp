@@ -110,7 +110,8 @@ namespace array_convertor {
             }
         };
 
-        void GetValues0(int i) {
+//набор методов для получения и установки значений элементов трехмерного массива
+        void GetValues0(int i) {   //Возвращает значение элемента массива по индексу i в первом измерении.
             return _array[0][0][i];
         };
         void GetValues1(int i) {
@@ -166,7 +167,7 @@ namespace array_convertor {
             }
         }
     };
-    using Mas3d = Array3d<int, 3, 3, 3>;
+    using Mas3d = Array3d<int, 3, 3, 3>; //Mas3d становится альтернативным именем для класса Array3d с заданными параметрами и размерностями
 
 
 } // array_convertor
